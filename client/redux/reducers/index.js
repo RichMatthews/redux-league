@@ -1,13 +1,8 @@
-const initialState = {
-  myState: 'I AM THE STATE IN BOLD'
-};
+import { combineReducers } from 'redux';
+import teams from './teams';
 
-export default(state = initialState, action) => {
-  switch(action.type){
-    case 'FAKE_ACTION': {
-      return { ...state }
-    }
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  teams
+});
+
+export default rootReducer;

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Example from './components/Example';
+import Main from './components/Main';
 
 class Component extends React.Component{
   render(){
     return (
-      <Example />
+      <Main />
       )
   };
 };
