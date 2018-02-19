@@ -1,0 +1,21 @@
+{ teamToFind &&
+  teamToFind.matches &&
+  teamToFind.matches.length > 0 ?
+  teamToFind.matches.map((match) => (
+    match.homeGame ?
+     <div> {chosenTeam} {match.goalsScored} - {match.goalsAgainst} {match.opposition} </div>
+    :
+     <div> {match.opposition} {match.goalsAgainst} - {match.goalsScored} {chosenTeam} </div>
+  ))
+  :
+  'No matches so far'
+}
+
+<h3>Latest Matches</h3>
+<Dropdown
+  onChange={(this.handleChosenTeam)}
+  placeholder='Select team to view matches'
+  search
+  selection
+  options={teams}
+/>

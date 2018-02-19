@@ -1,0 +1,20 @@
+
+function* postMatches() {
+  try {
+    const getState = (state) => state.teams
+    const teamsState = yield select(getState)
+    const teams = yield call(postMatchesDataToFirebase);
+    yield put({type: "TEAMS_POST_SUCCEEDED", teams: teams});
+  } catch (e) {
+    yield put({type: "TEAMS_POST_FAILED", message: e.message});
+  }
+}
+
+function* fetchMatches() {
+  try {
+    const teams = yield call(fetchMatchesDataFromFirebase);
+    yield put({type: "MATCHES_FETCH_SUCCEEDED", teams: teams});
+  } catch (e) {
+    yield put({type: "TEAMS_FETCH_FAILED", message: e.message});
+  }
+}

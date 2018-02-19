@@ -1,101 +1,62 @@
-const initialState = [
-  {
-    name: 'Arsenal',
-    position: 1,
-    played: 0,
-    won: 0,
-    lost: 0,
-    drawn: 0,
-    goalsScored: 0,
-    goalsAgainst: 0,
-    goalDifference: 0,
-    points: 0,
-    matches: []
-  },
-  {
-    name: 'Manchester United',
-    position: 2,
-    played: 0,
-    won: 0,
-    lost: 0,
-    drawn: 0,
-    goalsScored: 0,
-    goalsAgainst: 0,
-    goalDifference: 0,
-    points: 0,
-    matches: []
-  },
-  {
-    name: 'Manchester City',
-    position: 3,
-    played: 0,
-    won: 0,
-    lost: 0,
-    drawn: 0,
-    goalsScored: 0,
-    goalsAgainst: 0,
-    goalDifference: 0,
-    points: 0,
-    matches: []
-  },
-  {
-    name: 'Chelsea',
-    position: 4,
-    played: 0,
-    won: 0,
-    lost: 0,
-    drawn: 0,
-    goalsScored: 0,
-    goalsAgainst: 0,
-    goalDifference: 0,
-    points: 0,
-    matches: []
-  },
-  {
-    name: 'Spurs',
-    position: 5,
-    played: 0,
-    won: 0,
-    lost: 0,
-    drawn: 0,
-    goalsScored: 0,
-    goalsAgainst: 0,
-    goalDifference: 0,
-    points: 0,
-    matches: []
-  }
-];
+const initialState = [];
 
 const workOutWinner = (homeTeam, awayTeam) => {
   if (homeTeam.goals > awayTeam.goals) { return { winners: homeTeam, losers: awayTeam} }
-  else if (homeTeam.goals === awayTeam.goals) { return 'draw'}
+  else if (homeTeam.goals === awayTeam.goals) { return { home: homeTeam, away: awayTeam } }
   else { return { winners: awayTeam, losers: homeTeam }}
 }
 
 export default(state = initialState, action) => {
   switch(action.type){
-    case 'UPDATE_WINNER': {
+    case 'UPDATE_TABLE': {
       const result = workOutWinner(action.data.homeTeam, action.data.awayTeam)
-      return state.map(team => team.name === result.winners.name
-        ?
-        { ...team,
-          won: team.won + 1,
-          points: team.points + 3,
-          goalsScored: team.goalsScored + result.winners.goals,
-          goalsAgainst: team.goalsAgainst + result.losers.goals
-        }
-        : team )
+      const data = action.data;
+      const winners = result.winners;
+      const losers = result.losers;
+      const home = result.home;
+      const away = result.away;
+      // const whoWasAtHome = data.homeTeam.name === winners.name ? true : false
+      if (data.homeTeam.goals !== data.awayTeam.goals){
+        return state.map(team => team.name === winners.name
+          ?
+          { ...team,
+            won: team.won + 1,
+            points: team.points + 3,
+            goalsScored: team.goalsScored + winners.goals,
+            goalsAgainst: team.goalsAgainst + losers.goals,
+            matches: [].concat(team.matches).concat({opposition: losers.name, goalsScored: winners.goals, goalsAgainst: losers.goals, homeGame: true})
+          }
+          : team.name === losers.name ? {
+            ...team,
+              lost: team.lost + 1,
+              goalsScored: team.goalsScored + losers.goals,
+              goalsAgainst: team.goalsAgainst + winners.goals,
+              matches: [].concat(team.matches).concat({opposition: winners.name, goalsScored: losers.goals, goalsAgainst: winners.goals, homeGame: true})
+          } : team )
+      }
+      else {
+        return state.map(team => team.name === result.home.name
+          ?
+          { ...team,
+            points: team.points + 1,
+            drawn: team.drawn + 1,
+            goalsScored: team.goalsScored + home.goals,
+            goalsAgainst: team.goalsAgainst + away.goals,
+            matches: [].concat(team.matches).concat({opposition: away.name, goalsScored: home.goals, goalsAgainst: home.goals, homeGame: true})
+          }
+          : team.name === result.away.name ? {
+            ...team,
+              points: team.points + 1,
+              drawn: team.drawn + 1,
+              goalsScored: team.goalsScored + away.goals,
+              goalsAgainst: team.goalsAgainst + home.goals,
+              matches: [].concat(team.matches).concat({opposition: home.name, goalsScored: home.goals, goalsAgainst: home.goals, homeGame: true})
+          } : team )
+      }
     }
-    case 'UPDATE_LOSER': {
-      const result = workOutWinner(action.data.homeTeam, action.data.awayTeam)
-      return state.map(team => team.name === result.losers.name
-        ?
-        { ...team,
-          lost: team.lost + 1,
-          goalsScored: team.goalsScored + result.losers.goals,
-          goalsAgainst: team.goalsAgainst+ result.winners.goals
-        }
-        : team )
+    case 'TEAMS_FETCH_SUCCEEDED': {
+      const teams = [].concat(action.teams)
+      return teams;
     }
     default:
       return state;

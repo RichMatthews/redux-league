@@ -1,0 +1,87 @@
+{
+  "Chelsea" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Chelsea",
+    "played" : 0,
+    "points" : 0,
+    "text" : "Chelsea",
+    "value" : "Chelsea",
+    "won" : 0
+  },
+  "Man United" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Man United",
+    "points" : 0,
+    "text" : "Man United",
+    "value" : "Man United",
+    "won" : 0
+  },
+  "Liverpool" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Liverpool",
+    "points" : 0,
+    "text" : "Liverpool",
+    "value" : "Liverpool",
+    "won" : 0
+  },
+  "Arsenal" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Arsenal",
+    "points" : 0,
+    "text" : "Arsenal",
+    "value" : "Arsenal",
+    "won" : 0
+  },
+  "Leicester" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Leicester",
+    "points" : 0,
+    "text" : "Leicester",
+    "value" : "Leicester",
+    "won" : 0
+  },
+  "Man City" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Man City",
+    "points" : 0,
+    "text" : "Man City",
+    "value" : "Man City",
+    "won" : 0
+  },
+  "Spurs" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Spurs",
+    "points" : 0,
+    "text" : "Spurs",
+    "value" : "Spurs",
+    "won" : 0
+  }
+}
