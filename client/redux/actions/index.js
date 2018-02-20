@@ -51,3 +51,7 @@ export const postMatchToFirebase = (home, away) => ({
     awayTeam: away
   }
 })
+
+export const emptyInputError = () => ({
+  type: 'EMPTY_INPUT_ERROR'
+})

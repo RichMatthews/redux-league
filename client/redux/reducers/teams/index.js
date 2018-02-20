@@ -24,14 +24,14 @@ export default(state = initialState, action) => {
             points: team.points + 3,
             goalsScored: team.goalsScored + winners.goals,
             goalsAgainst: team.goalsAgainst + losers.goals,
-            matches: [].concat(team.matches).concat({opposition: losers.name, goalsScored: winners.goals, goalsAgainst: losers.goals, homeGame: true})
+            matches: [].concat(team.matches).concat({opposition: losers.name, goalsScored: winners.goals, goalsAgainst: losers.goals})
           }
           : team.name === losers.name ? {
             ...team,
               lost: team.lost + 1,
               goalsScored: team.goalsScored + losers.goals,
               goalsAgainst: team.goalsAgainst + winners.goals,
-              matches: [].concat(team.matches).concat({opposition: winners.name, goalsScored: losers.goals, goalsAgainst: winners.goals, homeGame: true})
+              matches: [].concat(team.matches).concat({opposition: winners.name, goalsScored: losers.goals, goalsAgainst: winners.goals})
           } : team )
       }
       else {
@@ -42,7 +42,7 @@ export default(state = initialState, action) => {
             drawn: team.drawn + 1,
             goalsScored: team.goalsScored + home.goals,
             goalsAgainst: team.goalsAgainst + away.goals,
-            matches: [].concat(team.matches).concat({opposition: away.name, goalsScored: home.goals, goalsAgainst: home.goals, homeGame: true})
+            matches: [].concat(team.matches).concat({opposition: away.name, goalsScored: home.goals, goalsAgainst: home.goals})
           }
           : team.name === result.away.name ? {
             ...team,
@@ -50,7 +50,7 @@ export default(state = initialState, action) => {
               drawn: team.drawn + 1,
               goalsScored: team.goalsScored + away.goals,
               goalsAgainst: team.goalsAgainst + home.goals,
-              matches: [].concat(team.matches).concat({opposition: home.name, goalsScored: home.goals, goalsAgainst: home.goals, homeGame: true})
+              matches: [].concat(team.matches).concat({opposition: home.name, goalsScored: home.goals, goalsAgainst: home.goals})
           } : team )
       }
     }

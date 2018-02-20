@@ -6,7 +6,7 @@ import {
   syncStoreToFirebase,
   postMatchToFirebase
  } from '../../redux/actions';
- import { Dropdown, Input, Button } from 'semantic-ui-react';
+ import Button from '../Button'
  import Table from '../Table'
  import Matches from '../Matches'
  import SubmitMatch from '../SubmitMatch'
@@ -38,26 +38,37 @@ export class Main extends React.Component {
       }
     ],
     chosenTeam: '',
-    chosenVenue: ''
+    chosenVenue: '',
+    chosenMonth: '',
+    validInputs: false
   }
 
   componentDidMount = () => {
     this.props.syncFirebaseToStore()
   }
 
-  handleInput = (name) => (value) => {
-   const prevState = this.state[name]
+  handleInput = e => {
+   const { name, value } = e.target;
    this.setState({ [name]: value })
   }
 
-  handleName = (name) => (value) => {
+  handleTeamName = e => {
+   this.form()
+   const { name, value } = e.target;
+   if (value.length > 0) {
+     this.setState({validInputs: true})
+   }
+   else {
+     this.setState({validInputs: false})
+   }
    const prevState = this.state[name]
    this.setState({ [name]: {...prevState, name: value } })
   }
 
-  handleGoals = (name) => (value) => {
+  handleGoals = e => {
+   const { name, value } = e.target;
    const prevState = this.state[name]
-   this.setState({ [name]: {...prevState, goals: value } })
+   this.setState({ [name]: {...prevState, goals: Number(value) } })
   }
 
   enableButton = () => {
@@ -67,7 +78,7 @@ export class Main extends React.Component {
 
   toggleTable = () => {
     this.setState(prevState => ({showLeagueTable: !prevState.showLeagueTable}))
-    this.toggleView()
+    this.toggleView();
   }
 
   toggleView = () => {
@@ -75,16 +86,18 @@ export class Main extends React.Component {
     else { this.setState({buttonName: 'show matches'}) }
   }
 
-  findTeam = (team, venue) => {
-    if (team && venue === 'home') {
-      return this.filterByTeam(team, 'homeTeam')
-    }
-    else if (team && venue === 'away') {
-      return this.filterByTeam(team, 'awayTeam')
+  findMatchesForTeam = (team, venue) => {
+    if (team && venue) {
+      return this.filterByTeam(team, `${venue}Team`)
     }
     else if (team) {
       return this.props.matches.filter(t => t.homeTeam === team.name || t.awayTeam === team.name)
       .map((match) => (
+        this.result(match)
+      ))
+    }
+    else {
+      return this.props.matches.map((match) => (
         this.result(match)
       ))
     }
@@ -108,24 +121,52 @@ export class Main extends React.Component {
            </div>
   }
 
+  compare = (a,b) => {
+  if (a.last_nom < b.last_nom)
+    return -1;
+  if (a.last_nom > b.last_nom)
+    return 1;
+    return 0;
+  }
+
+  form = (team) => {
+    let lastFiveMatches;
+    return team && team.matches ?
+      lastFiveMatches = Object.values(this.props.teams.find(t => t.name === team.name).matches).sort(this.compare).reverse().slice(0, 5).map((match) => {
+        if(match.winner === team.name){
+          return 'W ';
+        }
+        else if(match.winner !== team.name){
+          return 'L ';
+        }
+        else {
+          return 'D ';
+        }
+      })
+    :
+    '---'
+  }
+
   render() {
-    const { teams, matches, submitMatch } = this.props;
-    const { home, away, chosenTeam, buttonDisabled, showLeagueTable, buttonName, venueOptions, chosenVenue } = this.state;
-    let teamToFind = teams.find(team => team.name === this.state.chosenTeam);
+    const { teams, matches, submitMatch, form } = this.props;
+    const { home, away, chosenTeam, buttonDisabled, showLeagueTable, buttonName, venueOptions, chosenVenue, chosenMonth } = this.state;
+    let teamToFind = teams.find(team => team.name === chosenTeam);
     return(
       <div className="container">
-        <SubmitMatch
-          handleName={this.handleName}
-          handleGoals={this.handleGoals}
-          teams={teams}
-        />
-        <Button
-          onClick={() => submitMatch(home, away, teams)}
-          disabled={false}
-          onChange={this.enableButton}
-        >
-          Submit
-        </Button>
+        <div className="submitMatchContainer">
+          <SubmitMatch
+            handleTeamName={this.handleTeamName}
+            handleGoals={this.handleGoals}
+            teams={teams}
+          />
+          <Button
+            onClick={() => submitMatch(home, away, teams)}
+            className="submitMatchBtn"
+            text="Submit"
+            disabled={!this.state.validInputs}
+          >
+          </Button>
+        </div>
       <div className="tableOrMatches">
         <button onClick={this.toggleTable}>{buttonName}</button>
         {showLeagueTable ?
@@ -133,6 +174,7 @@ export class Main extends React.Component {
             <h3> League Table </h3>
             <Table
               teams={teams}
+              form={this.form}
             />
           </div>
           :
@@ -142,7 +184,7 @@ export class Main extends React.Component {
               venueOptions={venueOptions}
               handleInput={this.handleInput}
             />
-            {this.findTeam(teamToFind, chosenVenue)}
+            {this.findMatchesForTeam(teamToFind, chosenVenue)}
           </div>
         }
       </div>

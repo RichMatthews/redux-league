@@ -1,33 +1,37 @@
 import React from 'react';
-import { Dropdown, Input } from 'semantic-ui-react';
+import './index.scss'
 
-const submitMatch = ({ handleName, handleGoals, teams }) => (
-  <div className="matchInput">
+const submitMatch = ({ handleTeamName, handleGoals, teams }) => (
+  <div>
     <h3>Match</h3>
-      <Dropdown
-        className="teamInput"
-        onChange={(e) => handleName('home')(e.target.innerText)}
-        placeholder='Select home team'
-        search
-        selection
-        options={teams}
-      />
-      <Input
-        className="goalsInput"
-        onChange={(e) => handleGoals('home')(Number(e.target.value))}
-      />
-      <Input
-        className="goalsInput"
-        onChange={(e) => handleGoals('away')(Number(e.target.value))}
-      />
-      <Dropdown
-        className="teamInput"
-        onChange={(e) => handleName('away')(e.target.innerText)}
-        placeholder='Select away team'
-        search
-        selection
-        options={teams}
-      />
+    <div className="matchInput">
+        <div className="home">
+          <input
+            className="teamInput"
+            name="home"
+            onChange={handleTeamName}
+            placeholder='Enter home team'
+          />
+          <input
+            className="goalsInput"
+            name="home"
+            onChange={handleGoals}
+          />
+        </div>
+        <div className="away">
+          <input
+            className="goalsInput"
+            name="away"
+            onChange={handleGoals}
+          />
+          <input
+            className="teamInput"
+            name="away"
+            onChange={handleTeamName}
+            placeholder='Enter away team'
+          />
+        </div>
+    </div>
   </div>
 );
 
