@@ -1,0 +1,150 @@
+{
+  "Chelsea" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Chelsea",
+    "played" : 0,
+    "points" : 0,
+    "text" : "Chelsea",
+    "value" : "Chelsea",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  },
+  "Man United" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Man United",
+    "points" : 0,
+    "text" : "Man United",
+    "value" : "Man United",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  },
+  "Liverpool" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Liverpool",
+    "points" : 0,
+    "text" : "Liverpool",
+    "value" : "Liverpool",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  },
+  "Arsenal" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Arsenal",
+    "points" : 0,
+    "text" : "Arsenal",
+    "value" : "Arsenal",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  },
+  "Leicester" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Leicester",
+    "points" : 0,
+    "text" : "Leicester",
+    "value" : "Leicester",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  },
+  "Man City" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Man City",
+    "points" : 0,
+    "text" : "Man City",
+    "value" : "Man City",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  },
+  "Spurs" : {
+    "drawn" : 0,
+    "goalDifference" : 0,
+    "goalsAgainst" : 0,
+    "goalsScored" : 0,
+    "lost" : 0,
+    "name" : "Spurs",
+    "points" : 0,
+    "text" : "Spurs",
+    "value" : "Spurs",
+    "won" : 0,
+    "matches":{
+      "0": {
+        "homeTeam": "Arsenal",
+        "awayTeam": "Chelsea",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "winner": "Arsenal"
+      }
+    }
+  }
+}

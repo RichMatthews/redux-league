@@ -36,7 +36,8 @@ const postTeamsToFirebase = (teams) => {
       points: team.points,
       text: team.text,
       value: team.value,
-      won: team.won
+      won: team.won,
+      matches: team.matches
     });
   });
 };

@@ -6,10 +6,11 @@ import {
   syncStoreToFirebase,
   postMatchToFirebase
  } from '../../redux/actions';
- import Button from '../Button'
- import Table from '../Table'
- import Matches from '../Matches'
- import SubmitMatch from '../SubmitMatch'
+ import Button from '../Button';
+ import Header from '../Header';
+ import Table from '../Table';
+ import Matches from '../Matches';
+ import SubmitMatch from '../SubmitMatch';
  import firebase from 'firebase';
  import '../../../Firebase/config.js';
 import './index.scss';
@@ -122,11 +123,11 @@ export class Main extends React.Component {
   }
 
   compare = (a,b) => {
-  if (a.last_nom < b.last_nom)
-    return -1;
-  if (a.last_nom > b.last_nom)
-    return 1;
-    return 0;
+    if (a.last_nom < b.last_nom)
+      return -1;
+    if (a.last_nom > b.last_nom)
+      return 1;
+      return 0;
   }
 
   form = (team) => {
@@ -134,13 +135,13 @@ export class Main extends React.Component {
     return team && team.matches ?
       lastFiveMatches = Object.values(this.props.teams.find(t => t.name === team.name).matches).sort(this.compare).reverse().slice(0, 5).map((match) => {
         if(match.winner === team.name){
-          return 'W ';
+          return 'W';
         }
-        else if(match.winner !== team.name){
-          return 'L ';
+        else if(match.winner === 'draw'){
+          return 'D';
         }
         else {
-          return 'D ';
+          return 'L';
         }
       })
     :
@@ -153,6 +154,7 @@ export class Main extends React.Component {
     let teamToFind = teams.find(team => team.name === chosenTeam);
     return(
       <div className="container">
+      <Header />
         <div className="submitMatchContainer">
           <SubmitMatch
             handleTeamName={this.handleTeamName}
@@ -162,13 +164,17 @@ export class Main extends React.Component {
           <Button
             onClick={() => submitMatch(home, away, teams)}
             className="submitMatchBtn"
-            text="Submit"
+            text="SUBMIT"
             disabled={!this.state.validInputs}
           >
           </Button>
         </div>
       <div className="tableOrMatches">
-        <button onClick={this.toggleTable}>{buttonName}</button>
+        <Button
+          onClick={this.toggleTable}
+          text={buttonName.toUpperCase()}
+        >
+        </Button>
         {showLeagueTable ?
           <div className="tableOrMatches--children">
             <h3> League Table </h3>

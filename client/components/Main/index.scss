@@ -1,5 +1,6 @@
 body{
-  font-family: verdana;
+  font-family: Helvetica;
+  margin: 0;
 }
 
 .container{
@@ -33,6 +34,10 @@ body{
 
 .tableOrMatches{
   width: 500px;
+  text-align: center;
+  @media only screen and (max-width: 500px) {
+    width: 387px;
+  }
 }
 
 .tableOrMatches--children{
