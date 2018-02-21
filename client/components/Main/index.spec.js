@@ -97,10 +97,17 @@ describe('Main Component', () => {
     });
   });
   describe('buttons', () => {
-    it('expects submitMatch to have been called on click', () => {
+    it('expects submitMatch to not have been called on click', () => {
       const submitMatchBtn = wrapper.find('.submitMatchBtn');
       submitMatchBtn.simulate('click');
-      expect(submitMatchStub.called).to.equal(true)
+      expect(submitMatchStub.called).to.equal(false)
+    });
+    it('expects submitMatch to not have been called on click when teams entered', () => {
+      const submitMatchBtn = wrapper.find('.submitMatchBtn');
+      const homeInput = wrapper.find('.teamInput').at(0);
+      wrapper.setState({validInputs: true});
+      submitMatchBtn.simulate('click');
+      expect(submitMatchStub.called).to.equal(true);
     });
   });
   describe('other functions', () => {

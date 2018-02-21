@@ -123,6 +123,7 @@ export class Main extends React.Component {
   }
 
   compare = (a,b) => {
+    console.log(a, 'a');
     if (a.last_nom < b.last_nom)
       return -1;
     if (a.last_nom > b.last_nom)
@@ -133,7 +134,7 @@ export class Main extends React.Component {
   form = (team) => {
     let lastFiveMatches;
     return team && team.matches ?
-      lastFiveMatches = Object.values(this.props.teams.find(t => t.name === team.name).matches).sort(this.compare).reverse().slice(0, 5).map((match) => {
+      lastFiveMatches = Object.values(this.props.teams.find(t => t.name === team.name).matches).reverse().slice(0, 5).map((match) => {
         if(match.winner === team.name){
           return 'W';
         }
