@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Matches = ({ handleInput, venueOptions, teams }) => (
+const Matches = ({ handleInput }) => (
   <div className="matchesComponent">
     <h3>Latest Matches</h3>
     <input

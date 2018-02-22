@@ -187,8 +187,6 @@ export class Main extends React.Component {
           :
           <div className="tableOrMatches--children">
             <Matches
-              teams={teams}
-              venueOptions={venueOptions}
               handleInput={this.handleInput}
             />
             {this.findMatchesForTeam(teamToFind, chosenVenue)}
