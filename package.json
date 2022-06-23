@@ -26,7 +26,7 @@
     "enzyme": "^2.7.1",
     "ignore-styles": "^5.0.1",
     "jest": "^22.4.0",
-    "jsdom": "9.11.0",
+    "jsdom": "16.5.0",
     "jsdom-global": "2.1.1",
     "node-hook": "^0.4.0",
     "node-sass": "^4.2.0",
